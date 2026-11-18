@@ -324,7 +324,7 @@ def check_stage1() -> None:
     missing = [f for f in need if not os.path.exists(os.path.join(figs, f))]
     add("BLOCK", "第一阶段图表", not missing,
         "缺：" + "、".join(missing) if missing else "两张图都在",
-        "`python analyze_t02.py --mah 4500` / `python analyze_t10.py`")
+        "`python analyze_t02.py`（荣耀200 5200mAh/3.87V 已是默认）/ `python analyze_t10.py`")
 
     imgs = [p for p in glob.glob(os.path.join(figs, "*"))
             if p.lower().endswith((".jpg", ".jpeg", ".png")) and "T0" not in os.path.basename(p)
