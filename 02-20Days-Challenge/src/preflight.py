@@ -356,7 +356,8 @@ def check_size() -> None:
                 pass
     add("NICE", "仓库体积可控（<200MB，单文件<40MB）", mb < 200 and not big,
         f"{mb:.1f} MB" + ("，超大文件：" + "、".join(big[:3]) if big else ""),
-        "GitHub 单文件上限 100MB；录音用 16kHz 单声道，或改用 Git LFS")
+        "GitHub 单文件上限 100MB；录音用 16bit/单声道/44.1kHz（手机录 24bit 双声道时"
+        "加 --to16 转，体积降到 1/3），或改用 Git LFS")
 
 
 # ----------------------------------------------------------------- 输出
