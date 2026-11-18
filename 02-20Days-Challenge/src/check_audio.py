@@ -278,7 +278,8 @@ def main() -> int:
             print("[!] 但有 {} 项提示，导入时加 --to16 一步修掉：".format(len(notes)))
             for k, v in notes.items():
                 print(f"      · {k} × {v}")
-            print("    命令见 _私房-面试与作战/06-24bit录音怎么办.md")
+            print("    这些都能在导入时用 rename 脚本的 --to16 一步修掉"
+                  "（见 docs/01-录音与实验SOP.md 第 1.2 节）")
         print("下一步：按 SOP 命名后放进 02-20Days-Challenge\\raw\\S1\\，")
         print("        然后跑  python 02-20Days-Challenge\\src\\selfcheck.py")
         return 0
