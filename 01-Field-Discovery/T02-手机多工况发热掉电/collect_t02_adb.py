@@ -55,10 +55,11 @@ def find_adb() -> str | None:
         return p
     # 常见安装位置兜底
     guesses = [
+        r"D:\platform-tools\platform-tools\adb.exe",   # 本机已装在这里（37.0.1）
+        r"D:\platform-tools\adb.exe",
+        r"C:\platform-tools\adb.exe",
         os.path.expandvars(r"%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe"),
         os.path.expandvars(r"%USERPROFILE%\AppData\Local\Android\Sdk\platform-tools\adb.exe"),
-        r"C:\platform-tools\adb.exe",
-        r"D:\platform-tools\adb.exe",
     ]
     for g in guesses:
         if os.path.exists(g):
@@ -136,8 +137,8 @@ def main() -> int:
     adb = find_adb()
     if not adb:
         print("[×] 没找到 adb。三个办法：")
-        print("    1) 装 Android Platform Tools：https://developer.android.com/tools/releases/platform-tools")
-        print("    2) 装 Android Studio，它在 ...\\Android\\Sdk\\platform-tools\\adb.exe")
+        print("    1) 本机已装：D:\\platform-tools\\platform-tools\\adb.exe（把它加进 PATH 或直接用绝对路径）")
+        print("    2) 装 Android Platform Tools：https://developer.android.com/tools/releases/platform-tools")
         print("    3) 别折腾，直接手工抄表（示例格式见 raw_data/记录表-示例格式.csv）")
         return 2
 
