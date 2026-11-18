@@ -42,6 +42,19 @@ def sh(cmd: list[str], cwd: str) -> tuple[int, str]:
     return r.returncode, (out + err).strip()
 
 
+def find_git() -> str | None:
+    """PATH 里找不到时再看常见安装位置——调用方的 PATH 可能是启动时的旧快照。"""
+    p = shutil.which("git")
+    if p:
+        return p
+    for c in (r"C:\Program Files\Git\cmd\git.exe",
+              r"C:\Program Files (x86)\Git\cmd\git.exe",
+              os.path.expandvars(r"%LOCALAPPDATA%\Programs\Git\cmd\git.exe")):
+        if os.path.isfile(c):
+            return c
+    return None
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("-m", "--message", required=True, help="提交信息")
@@ -50,7 +63,7 @@ def main() -> int:
     ap.add_argument("--quiet", action="store_true", help="不打印改动清单")
     args = ap.parse_args()
 
-    git = shutil.which("git")
+    git = find_git()
     if not git:
         print("[×] 没找到 git，先执行：winget install --id Git.Git -e")
         return 3
