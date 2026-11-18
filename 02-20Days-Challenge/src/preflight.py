@@ -165,6 +165,8 @@ def md_files_placeholder_count() -> tuple[int, list[str]]:
             continue
         if os.path.basename(path) == "PREFLIGHT.md":     # 本脚本自己的产物，跳过
             continue
+        if os.path.basename(path) == "README.md" and (os.sep + "iterations" + os.sep) in rel:
+            continue    # iterations/README.md 是模板本身，里面的 ▢ 不是待填项
         try:
             txt = open(path, encoding="utf-8", errors="ignore").read()
         except OSError:
@@ -314,9 +316,15 @@ def check_stage1() -> None:
         "用 collect_t02_adb.py 自动采（adb 读电池，时间戳由电脑打），或手工按示例格式填")
 
     n10 = 0
+    fake = False
     if os.path.exists(t10):
-        n10 = max(0, sum(1 for _ in open(t10, encoding="utf-8-sig", errors="ignore")) - 1)
-    add("BLOCK", "课题10 耗时记录 ≥10 个样本", n10 >= 10, f"{n10} 行",
+        rows = open(t10, encoding="utf-8-sig", errors="ignore").read().splitlines()
+        n10 = max(0, len(rows) - 1)
+        # 示例文件里的数字是编的；如果忘了清空、直接把示例改名成正式表，
+        # 交上去就是"编造数据"，比少填几行严重得多 —— 所以这里必须拦住。
+        fake = any(("示例" in r) or ("请勿提交" in r) for r in rows[1:])
+    add("BLOCK", "课题10 耗时记录 ≥10 个样本", n10 >= 10 and not fake,
+        f"{n10} 行" + ("（含示例数据，必须换成实测值）" if fake else ""),
         "复制 raw_data/耗时记录-示例格式.csv → 耗时记录.csv，清空示例数字后填实测值")
 
     figs = os.path.join(fd, "figures")
@@ -333,7 +341,39 @@ def check_stage1() -> None:
         "两题各至少 1 张：拍到手 + 设备屏幕/场景，放 01-Field-Discovery/figures/")
 
 
-# ----------------------------------------------------------------- 7. 文本与体积
+# ----------------------------------------------------------------- 7. 过程文档
+def check_docs() -> None:
+    """Step 0 的仓库结构要求：03-AI-Collaboration/ 必须有真实的排障记录。
+
+    判"有"不算数，要判"写得够不够"——每篇至少要有验证动作和复盘，
+    否则就退化成"我问了 AI 一句、它给了我一段代码"那种没价值的记录。
+    """
+    ai_dir = os.path.join(ROOT, "03-AI-Collaboration")
+    recs = [p for p in glob.glob(os.path.join(ai_dir, "*.md"))
+            if os.path.basename(p) != "README.md"]
+    thin = []
+    for p in recs:
+        try:
+            txt = open(p, encoding="utf-8", errors="ignore").read()
+        except OSError:
+            continue
+        if len(txt) < 600 or "复盘" not in txt:
+            thin.append(os.path.basename(p))
+    ok = len(recs) >= 3 and not thin
+    detail = f"{len(recs)} 篇"
+    if thin:
+        detail += "，太薄（缺复盘或不足 600 字）：" + "、".join(thin[:3])
+    add("BLOCK", "AI 协作排障记录 ≥3 篇", ok, detail,
+        "03-AI-Collaboration/ 每篇要含「我的提问原文 / AI 说错的地方 / 我怎么验证 / 复盘」四段")
+
+    it_dir = os.path.join(CH, "iterations")
+    its = [p for p in glob.glob(os.path.join(it_dir, "*.md"))
+           if os.path.basename(p) != "README.md"]
+    add("NICE", "迭代记录 ≥3 条", len(its) >= 3, f"{len(its)} 条",
+        "照 iterations/README.md 的模板写，必须写清「改之前多少、改之后多少」")
+
+
+# ----------------------------------------------------------------- 8. 文本与体积
 def check_placeholders() -> None:
     n, files = md_files_placeholder_count()
     detail = f"还剩 {n} 处" + ("：" + "、".join(files[:6]) if files else "")
@@ -415,6 +455,7 @@ def main() -> int:
     check_results()
     check_blind()
     check_stage1()
+    check_docs()
     check_placeholders()
     check_size()
 
