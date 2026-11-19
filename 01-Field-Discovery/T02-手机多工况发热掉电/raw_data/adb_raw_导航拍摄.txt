@@ -1,0 +1,1464 @@
+===== 2026-11-19T23:16:17  minute=0 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3977
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4189
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h16m49s794ms
+ The last voltage value sent via the battery changed broadcast: 4199
+  temperature: 330
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:16:47  minute=1 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3973
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4136
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h18m49s757ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 330
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:17:17  minute=1 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3973
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4136
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h18m49s757ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 330
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:17:47  minute=2 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3968
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4146
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h19m20s502ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:18:17  minute=2 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3962
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4157
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h19m51s225ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:18:47  minute=3 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3957
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4156
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h20m21s936ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:19:17  minute=3 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3953
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4153
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h20m52s673ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:19:47  minute=4 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3948
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4160
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h21m23s399ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:20:17  minute=4 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3945
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4160
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h21m54s109ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:20:47  minute=5 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3941
+  status: 3
+  health: 2
+  present: true
+  level: 89
+  scale: 100
+  voltage: 4162
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m24s812ms
+ The last voltage value sent via the battery changed broadcast: 4136
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:21:17  minute=5 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3938
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4155
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:21:47  minute=6 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3935
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4159
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:22:17  minute=6 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3928
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4149
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:22:47  minute=7 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3925
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4156
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:23:17  minute=7 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3921
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4158
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:23:47  minute=8 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3917
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4159
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:24:17  minute=8 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3915
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4153
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:24:47  minute=9 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3911
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4152
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:25:17  minute=9 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3907
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4152
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:25:47  minute=10 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3905
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4149
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:26:17  minute=10 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3900
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4154
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:26:47  minute=11 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3897
+  status: 3
+  health: 2
+  present: true
+  level: 88
+  scale: 100
+  voltage: 4149
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h22m55s540ms
+ The last voltage value sent via the battery changed broadcast: 4155
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:27:17  minute=11 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3895
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4152
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:27:47  minute=12 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3891
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4150
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:28:17  minute=12 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3888
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4146
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:28:47  minute=13 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3884
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4144
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:29:17  minute=13 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3879
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4143
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:29:47  minute=14 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3875
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4148
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:30:17  minute=14 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3872
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4140
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:30:47  minute=15 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3869
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4146
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:31:17  minute=15 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3866
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4140
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:31:47  minute=16 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3863
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4143
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:32:17  minute=16 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3860
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4139
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:32:47  minute=17 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3857
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4143
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:33:17  minute=17 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3852
+  status: 3
+  health: 2
+  present: true
+  level: 87
+  scale: 100
+  voltage: 4136
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h29m4s157ms
+ The last voltage value sent via the battery changed broadcast: 4152
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:33:47  minute=18 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3848
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4141
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:34:17  minute=18 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3845
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4133
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:34:47  minute=19 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3841
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4140
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:35:17  minute=19 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3837
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4135
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:35:47  minute=20 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3830
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4138
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:36:17  minute=20 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3827
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4135
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:36:47  minute=21 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3824
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4132
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:37:17  minute=21 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3821
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4139
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:37:48  minute=22 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3818
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4129
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:38:17  minute=22 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3814
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4131
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:38:47  minute=23 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3814
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4131
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:39:17  minute=23 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3811
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4135
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:39:47  minute=24 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3807
+  status: 3
+  health: 2
+  present: true
+  level: 86
+  scale: 100
+  voltage: 4131
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h35m43s528ms
+ The last voltage value sent via the battery changed broadcast: 4141
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:40:17  minute=24 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3804
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4132
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:40:47  minute=25 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3801
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4129
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:41:17  minute=25 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3795
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4125
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:41:47  minute=26 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3790
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4129
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:42:17  minute=26 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3787
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4125
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:42:47  minute=27 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3779
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4122
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:43:17  minute=27 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3776
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4122
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:43:47  minute=28 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3773
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4115
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:44:17  minute=28 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3770
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4125
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:44:47  minute=29 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3767
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4124
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:45:17  minute=29 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3763
+  status: 3
+  health: 2
+  present: true
+  level: 85
+  scale: 100
+  voltage: 4121
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h41m52s169ms
+ The last voltage value sent via the battery changed broadcast: 4132
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:45:47  minute=30 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3760
+  status: 3
+  health: 2
+  present: true
+  level: 84
+  scale: 100
+  voltage: 4120
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h47m30s83ms
+ The last voltage value sent via the battery changed broadcast: 4120
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
+===== 2026-11-19T23:46:17  minute=30 =====
+Current Battery Service state:
+  AC powered: false
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+ Time when the latest updated value of the Max charging current was sent via battery changed broadcast: +18d10h34m17s120ms
+  Max charging voltage: 0
+  Charge counter: 3757
+  status: 3
+  health: 2
+  present: true
+  level: 84
+  scale: 100
+  voltage: 4124
+ Time when the latest updated value of the voltage was sent via battery changed broadcast: +18d12h47m30s83ms
+ The last voltage value sent via the battery changed broadcast: 4120
+  temperature: 340
+  technology: Li-ion
+  Charging state: 0
+  Charging policy: 0
+  Capacity level: 3
+
