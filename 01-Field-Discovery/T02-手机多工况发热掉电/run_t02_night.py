@@ -90,14 +90,21 @@ def adb(adb_exe: str, *args: str, timeout: int = 20) -> str:
 def battery(adb_exe: str) -> dict:
     txt = adb(adb_exe, "shell", "dumpsys", "battery")
     out: dict = {}
-    for key, pat in (("level", r"level:\s*(\d+)"), ("temp", r"temperature:\s*(\d+)"),
-                     ("volt", r"voltage:\s*(\d+)"), ("charging", r"charging:\s*(\w+)")):
-        m = re.search(pat, txt)
+    for key, pat in (("level", r"^\s*level:\s*(\d+)"), ("temp", r"^\s*temperature:\s*(\d+)"),
+                     ("volt", r"^\s*voltage:\s*(\d+)")):
+        m = re.search(pat, txt, re.M)
         if m:
             out[key] = m.group(1)
     if "temp" in out:
         out["temp"] = str(round(int(out["temp"]) / 10.0, 1))
-    out["charging"] = out.get("charging", "?") == "true"
+
+    powered = bool(re.search(r"^\s*(?:AC|USB|Wireless|Dock) powered:\s*true", txt, re.M))
+    m = re.search(r"^\s*status:\s*(\d+)", txt, re.M)
+    code = int(m.group(1)) if m else 0
+    out["powered"] = powered
+    out["status"] = {2: "充电中", 3: "放电中", 4: "未充电", 5: "已充满"}.get(code, str(code))
+    # 外部供电（哪怕显示"已充满"）电量都不会掉，一律算"不能采"
+    out["charging"] = powered or code == 2
     return out
 
 
@@ -304,6 +311,26 @@ def setup_wifi(adb_exe: str) -> str:
     return ""
 
 
+def set_screen(adb_exe: str, cond: str, brightness: int = 128) -> None:
+    """按工况设定屏幕状态，避免"以为在息屏其实亮着"。
+
+    待机段必须真熄屏 —— 亮着 50% 的屏在待机段能占掉一半功耗，
+    测出来的就不是待机。其余三段固定 50% 亮度并保持唤醒，
+    否则自动亮度会随环境光漂移，四段的屏幕功耗无法互比。
+    """
+    adb(adb_exe, "shell", "settings", "put", "system", "screen_brightness_mode", "0")
+    adb(adb_exe, "shell", "settings", "put", "system", "screen_brightness", str(brightness))
+    if cond.startswith("待机"):
+        adb(adb_exe, "shell", "input", "keyevent", "223")      # KEYCODE_SLEEP
+        print("[i] 已发送熄屏指令（待机段必须真熄屏，亮屏待机会把功耗抬高一大截）")
+    else:
+        adb(adb_exe, "shell", "input", "keyevent", "224")      # KEYCODE_WAKEUP
+        time.sleep(0.8)
+        adb(adb_exe, "shell", "wm", "dismiss-keyguard")
+        adb(adb_exe, "shell", "input", "keyevent", "82")       # 兜底：MENU 解锁
+        print(f"[i] 已唤醒并锁定亮度 50%（{brightness}/255）")
+
+
 def countdown(minutes: float, label: str) -> None:
     end = time.time() + minutes * 60
     while True:
@@ -372,8 +399,17 @@ def main() -> int:
         except EOFError:
             return 1
     if b.get("charging"):
-        print("[×] 手机正在充电 —— 现在采出来的电量不会掉。先拔线和充电器。")
+        print(f"[×] 手机正在被充电（dumpsys: AC/USB powered=true，status={b.get('status')}）。")
+        print("    充电时电量不掉，30 分钟采出来是一条平线，整段作废。")
+        print("    请拔掉数据线 / 拔掉充电头 / 从无线充电板上拿下来，再重跑。")
         return 1
+    if str(b.get("level")) == "100":
+        print("[!] 现在是 100%，系统在满电平台期可能十几分钟不掉一格，斜率会失真。")
+        print("    建议先拔线静置 5 分钟，等掉到 99% 以下再开始（不急就直接回车继续）。")
+        try:
+            input("    按回车开始 > ")
+        except EOFError:
+            pass
 
     plan = " → ".join(f"{c}({args.min:.0f}min)" for c in conds)
     print(f"\n[i] 计划：{plan}，段间回温 {args.cooldown:.0f} 分钟")
@@ -385,6 +421,15 @@ def main() -> int:
         print("=" * 62)
         print(f"  第 {i}/{len(conds)} 段：{cond}   {datetime.now():%H:%M:%S}")
         print("=" * 62)
+        if cond.startswith("待机"):
+            print("  → 现在什么都别做，手机放桌上，别充电。")
+        elif "短视频" in cond:
+            print("  → 现在打开短视频 App，一直往上刷，别停在同一个视频上。")
+        elif "导航" in cond:
+            print("  → 现在打开地图 App，点开导航，屏幕别退出去。")
+        else:
+            print("  → 现在打开游戏，画质/帧率调到最高，玩满这一段。")
+        set_screen(adb_exe, cond)
         cmd = [PY, "-X", "utf8", COLLECT, "--cond", cond,
                "--min", str(args.min), "--room", args.room]
         if args.note:

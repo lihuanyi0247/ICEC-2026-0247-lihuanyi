@@ -95,16 +95,27 @@ def parse_battery(text: str) -> dict:
     m = re.search(r"temperature:\s*(\d+)", text)
     if m:
         out["temp"] = round(int(m.group(1)) / 10.0, 1)
-    m = re.search(r"voltage:\s*(\d+)", text)
+    # 必须锚到行首的 "voltage:"。否则会先匹配到 "Max charging voltage: 5000000"
+    # （充电器输出电压），把 4.4V 的电池电压读成 5000V。
+    m = re.search(r"^\s*voltage:\s*(\d+)", text, re.M)
     if m:
         out["volt"] = int(m.group(1))
-    m = re.search(r"charging:\s*(\w+)", text)
+
+    # 新版 dumpsys 没有 "charging: true" 这一行，只有四条 powered 标志。
+    # 少读这一项，插着充电器的数据就不会被标"作废"，一路污染到结论里。
+    powered = bool(re.search(r"^\s*(?:AC|USB|Wireless|Dock) powered:\s*true", text, re.M))
+    out["powered"] = powered
+
+    code = 0
+    m = re.search(r"^\s*status:\s*(\d+)", text, re.M)
     if m:
-        out["charging"] = m.group(1) == "true"
-    m = re.search(r"status:\s*(\d+)", text)
-    if m:
+        code = int(m.group(1))
         # 2=充电中 3=放电中 4=未充电 5=已充满
-        out["status"] = {"2": "充电中", "3": "放电中", "4": "未充电", "5": "已充满"}.get(m.group(1), m.group(1))
+        out["status"] = {2: "充电中", 3: "放电中", 4: "未充电", 5: "已充满"}.get(code, str(code))
+
+    # 只要外部供电就算"在充电"——100% 时 status 可能是 5（已充满），
+    # 但电量一样不会掉，这类数据同样作废。
+    out["charging"] = powered or code == 2
     return out
 
 
@@ -132,9 +143,50 @@ def screen_brightness(adb: str) -> str:
 
 
 # ---------------------------------------------------------------- 主流程
+def clean_csv() -> int:
+    """删掉"插着充电器采的"废行。
+
+    判据两条，任一条命中即删：
+      1) 备注里带"作废"（采集时就知道在充电）；
+      2) 电压 > 6000 mV —— 真机电池电压不可能这么高，
+         这是把 `Max charging voltage: 5000000` 读成电池电压的典型特征。
+    """
+    if not os.path.exists(CSV):
+        print(f"[i] {CSV} 还不存在，不用清。")
+        return 0
+    with open(CSV, encoding="utf-8-sig") as f:
+        rows = [r.rstrip("\n") for r in f if r.strip()]
+    if not rows:
+        print("[i] 文件是空的。")
+        return 0
+
+    head, body = rows[0], rows[1:]
+    keep, drop = [], []
+    for r in body:
+        cells = r.split(",")
+        bad = "作废" in r
+        if not bad and len(cells) > 5:
+            try:
+                bad = float(cells[5]) > 6000
+            except ValueError:
+                pass
+        (drop if bad else keep).append(r)
+
+    if not drop:
+        print(f"[i] 没有废行，现有 {len(keep)} 行都是有效数据。")
+        return 0
+    with open(CSV, "w", encoding="utf-8-sig", newline="") as f:
+        f.write(head + "\n")
+        for r in keep:
+            f.write(r + "\n")
+    print(f"[√] 删掉 {len(drop)} 行废数据（充电中 / 电压异常），保留 {len(keep)} 行有效数据。")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="只检查设备连接，不采样")
+    ap.add_argument("--clean", action="store_true", help="清掉记录表里充电时采的废行")
     ap.add_argument("--cond", default="", help="工况名，例如 待机 / 短视频 / 导航拍摄 / 高帧率游戏")
     ap.add_argument("--min", type=float, default=30, help="本段时长（分钟）")
     ap.add_argument("--interval", type=float, default=30, help="采样间隔（秒），默认 30")
@@ -143,6 +195,9 @@ def main() -> int:
     ap.add_argument("--app", default="", help="前台应用（可留空自动取）")
     ap.add_argument("--serial", default="", help="目标设备序列号（多设备时必须给，例如 172.20.10.6:40203）")
     args = ap.parse_args()
+
+    if args.clean:                      # 不需要连手机，先处理
+        return clean_csv()
 
     global SERIAL
     SERIAL = args.serial or os.environ.get("ANDROID_SERIAL", "").strip()
@@ -181,8 +236,13 @@ def main() -> int:
 
     bat = parse_battery(run_adb(adb, "shell", "dumpsys", "battery"))
     print(f"[i] 当前电量 {bat.get('level')}%  温度 {bat.get('temp')}°C  电压 {bat.get('volt')} mV  "
-          f"状态 {bat.get('status', '?')}")
+          f"状态 {bat.get('status', '?')}  外部供电 {'是 <- 数据会作废' if bat.get('charging') else '否 OK'}")
     if args.check:
+        if bat.get("charging"):
+            print("[×] 手机正在被充电（插着数据线 / 充电头 / 无线充电板）。")
+            print("    充电时电量不会掉，30 分钟采出来是一条平线，整段作废。")
+            print("    请拔掉线再重跑 --check。")
+            return 1
         print("[√] 连接正常，可以开始采样。")
         return 0
 
@@ -231,7 +291,10 @@ def main() -> int:
                 print(f"  [{minute:>3d} min] {b.get('level')}%  {b.get('temp')}°C  {b.get('volt')} mV  "
                       f"亮度{bright or '?'}%  {app or '?'}", end="\r")
             else:
-                print("  [!] 这轮没读到电池信息，已记入 raw log", end="\r")
+                # 无线调试下息屏久了可能被系统掐掉 TCP，这里自动重连一次再报错
+                if SERIAL and ":" in SERIAL:
+                    run_adb(adb, "connect", SERIAL, timeout=8)
+                print("  [!] 这轮没读到电池信息（无线可能断了，已在后台尝试重连）", end="\r")
 
             if step >= total:
                 break
