@@ -93,15 +93,71 @@ def battery(adb_exe: str) -> dict:
     return out
 
 
-def wifi_ip(adb_exe: str) -> str:
-    """从手机里读出 WiFi 的 IPv4。荣耀/MagicOS 用 `ip` 命令，老系统退化到 ifconfig。"""
-    for cmd in (["shell", "ip", "-f", "inet", "addr", "show", "wlan0"],
-                ["shell", "ifconfig", "wlan0"]):
+def local_netinfo() -> tuple[list[str], list[str]]:
+    """读电脑自己的 IPv4 和默认网关。
+
+    用途：判断电脑和手机是不是同一个网段。不是的话 adb 一定连不上，
+    与其反复试 IP，不如早点告诉他"去把电脑连到手机热点"。
+    """
+    ips: list[str] = []
+    gws: list[str] = []
+    try:
+        r = subprocess.run(["ipconfig"], capture_output=True, timeout=10)
+        raw = r.stdout or b""
+        txt = ""
+        for enc in ("gbk", "utf-8"):
+            try:
+                txt = raw.decode(enc)
+                break
+            except UnicodeDecodeError:
+                continue
+        lines = txt.splitlines()
+        for i, line in enumerate(lines):
+            if "IPv4" in line:
+                m = re.search(r"\d+\.\d+\.\d+\.\d+", line)
+                if m:
+                    ips.append(m.group(0))
+            if "默认网关" in line or "Default Gateway" in line:
+                # 网关可能折到下一行（IPv6 网关占满一行时）
+                for seg in (line, lines[i + 1] if i + 1 < len(lines) else ""):
+                    for m in re.finditer(r"\d+\.\d+\.\d+\.\d+", seg):
+                        gws.append(m.group(0))
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+    return ips, gws
+
+
+def same_subnet(a: str, b: str) -> bool:
+    return a.split(".")[:3] == b.split(".")[:3]
+
+
+def candidate_ips(adb_exe: str) -> list[str]:
+    """列出"可能连得到手机"的 IP，按可能性排序。
+
+    为什么不能只读 wlan0：**手机开热点时 wlan0 常常没有 IP**，
+    热点接口变成了 ap0 / swlan0（192.168.43.1 之类）。只认 wlan0 会直接失败。
+    所以要扫手机的所有接口，再用"电脑的默认网关"兜底 ——
+    电脑连的是手机热点时，网关就是手机自己。
+    """
+    cands: list[str] = []
+
+    def push(ip: str) -> None:
+        if ip and not ip.startswith("127.") and ip not in cands:
+            cands.append(ip)
+
+    for cmd in (["shell", "ip", "-f", "inet", "addr", "show"],
+                ["shell", "ifconfig"]):
         txt = adb(adb_exe, *cmd)
-        m = re.search(r"inet\s+(?:addr:)?(\d+\.\d+\.\d+\.\d+)", txt)
-        if m and not m.group(1).startswith("127."):
-            return m.group(1)
-    return ""
+        for m in re.finditer(r"inet\s+(?:addr:)?(\d+\.\d+\.\d+\.\d+)", txt):
+            push(m.group(1))
+        if cands:
+            break
+
+    # 电脑默认网关兜底：电脑连手机热点时，网关 = 手机
+    for gw in local_netinfo()[1]:
+        push(gw)
+
+    return cands
 
 
 def list_devices(adb_exe: str) -> list[str]:
@@ -119,11 +175,25 @@ def setup_wifi(adb_exe: str) -> str:
         return ""
     print(f"[i] USB 设备：{usb[0]}")
 
-    ip = wifi_ip(adb_exe)
-    if not ip:
-        print("[×] 读不到手机的 WiFi IP。确认手机连着 WiFi（不是移动数据），然后重试。")
+    cands = candidate_ips(adb_exe)
+    if not cands:
+        print("[×] 一个可用 IP 都没读到。确认手机连着 WiFi、或者热点已经打开。")
         return ""
-    print(f"[i] 手机 WiFi IP：{ip}")
+    print("[i] 候选 IP：" + "、".join(cands))
+    print("    （手机开热点时，热点接口一般是 192.168.43.1 这类地址；"
+          "电脑连热点时它就是网关）")
+
+    pc_ips, pc_gws = local_netinfo()
+    if pc_ips:
+        print(f"[i] 电脑 IPv4：{'、'.join(pc_ips)}   网关：{'、'.join(pc_gws) or '（无）'}")
+        reachable = [ip for ip in cands if any(same_subnet(ip, p) for p in pc_ips)]
+        if reachable:
+            print(f"[√] 手机和电脑在同一网段：{reachable[0]}")
+            cands = reachable + [ip for ip in cands if ip not in reachable]
+        else:
+            print("[!] ⚠ 手机和电脑**不在同一网段**，adb 大概率连不上。")
+            print(f"    手机 {cands[0]} ↔ 电脑 {pc_ips[0]}")
+            print("    先把电脑连到手机热点（不要一个连热点、一个连校园 WiFi），再重跑这一步。")
 
     b = battery(adb_exe)
     print(f"[i] 当前电量 {b.get('level')}%  温度 {b.get('temp')}°C")
@@ -131,34 +201,35 @@ def setup_wifi(adb_exe: str) -> str:
     print("[i] 切换到网络调试模式（adb tcpip 5555）…")
     adb(adb_exe, "tcpip", "5555")
     time.sleep(2)
-    print(f"[i] 连接 {ip}:5555 …")
-    adb(adb_exe, "connect", f"{ip}:5555")
-    time.sleep(1)
 
     print("\n" + "=" * 62)
-    print(" 现在请拔掉数据线（手机要保持连着同一个 WiFi）。")
-    print(" 拔完按回车，我来确认是不是真的走网络了。")
+    print(" 现在请拔掉数据线（手机别关机，热点 / WiFi 保持开着）。")
+    print(" 拔完按回车，我来逐个试这些 IP。")
     print("=" * 62)
     try:
         input(" 拔好线后按回车 > ")
     except EOFError:
         pass
 
-    for attempt in range(3):
+    for ip in cands:
+        print(f"[i] 试着连 {ip}:5555 …")
         adb(adb_exe, "connect", f"{ip}:5555")
-        time.sleep(1)
+        time.sleep(1.2)
         devs = list_devices(adb_exe)
-        net = [d for d in devs if d.startswith(ip)]
-        if net:
+        hit = [d for d in devs if d.startswith(ip)]
+        if hit:
             b = battery(adb_exe)
-            print(f"[√] 已走无线：{net[0]}")
+            print(f"[√] 已走无线：{hit[0]}")
             print(f"[i] 电量 {b.get('level')}%  温度 {b.get('temp')}°C  "
                   f"充电中={'是（数据会作废！）' if b.get('charging') else '否 ✓'}")
             if b.get("charging"):
                 print("[!] 还在充电：确认线已经拔掉、并且没有放在无线充电板上。")
-            return net[0]
-        print(f"[!] 第 {attempt + 1} 次没连上，重试…")
-    print("[×] 无线连接失败。退路：把数据线插回去，直接用有线采（数据里会标'正在充电'，"
+            return hit[0]
+
+    print("[×] 所有候选 IP 都没连上。")
+    print("    退路 1：让**电脑和手机连同一个网络**（要么都连宿舍 WiFi，要么都用热点），")
+    print("            不要一个连热点、一个连 WiFi。")
+    print("    退路 2：把数据线插回去，改用有线采（数据会标'正在充电'，"
           "掉电不可信，只能在报告里说明局限）。")
     return ""
 
