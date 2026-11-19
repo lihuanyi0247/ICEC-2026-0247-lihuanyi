@@ -70,9 +70,17 @@ def find_adb() -> str | None:
     return None
 
 
+TARGET: str = ""          # 选定要操作的设备；不指定时 adb shell 在多设备下会直接失败
+
+
 def adb(adb_exe: str, *args: str, timeout: int = 20) -> str:
+    cmd = [adb_exe]
+    # 只有"对某台设备执行"的命令才加 -s；devices/connect/pair/tcpip 是 server 级命令
+    if TARGET and args and args[0] == "shell":
+        cmd += ["-s", TARGET]
+    cmd += list(args)
     try:
-        r = subprocess.run([adb_exe, *args], capture_output=True, timeout=timeout)
+        r = subprocess.run(cmd, capture_output=True, timeout=timeout)
         return (r.stdout or b"").decode("utf-8", "replace") + \
                (r.stderr or b"").decode("utf-8", "replace")
     except (subprocess.TimeoutExpired, OSError):
@@ -160,10 +168,72 @@ def candidate_ips(adb_exe: str) -> list[str]:
     return cands
 
 
-def list_devices(adb_exe: str) -> list[str]:
+def device_states(adb_exe: str) -> list[tuple[str, str]]:
+    """返回 [(serial, state)]。state 可能是 device / unauthorized / offline / recovery。
+
+    为什么要区分：`adb devices` 里出现 `unauthorized` 时，设备其实**已经连上了**，
+    只是手机没点"允许"。老版本只过滤 state=="device"，于是把它当成"没设备"，
+    提示用户去插线/换线，方向完全错了。
+    """
     txt = adb(adb_exe, "devices")
-    return [l.split()[0] for l in txt.splitlines()[1:]
-            if l.strip() and l.split()[-1] == "device"]
+    out: list[tuple[str, str]] = []
+    for line in txt.splitlines()[1:]:
+        parts = line.split()
+        if len(parts) >= 2:
+            out.append((parts[0], parts[1]))
+    return out
+
+
+def list_devices(adb_exe: str) -> list[str]:
+    return [s for s, st in device_states(adb_exe) if st == "device"]
+
+
+def pick_target(adb_exe: str) -> str:
+    """从在线设备里挑一台作为采样目标。
+
+    为什么必须挑：Android 11+ 开「无线调试」后，系统除了 TCP 那条
+    （`172.20.10.6:40203`）还会注册一条 mDNS 记录
+    （`adb-XXXX-YYYY._adb-tls-connect._tcp`），`adb devices` 于是显示**两台**。
+    这时任何不带 `-s` 的 `adb shell` 都只会返回
+    `adb: more than one device/emulator`，解析出来的电量就是 0% ——
+    今晚就踩了这个坑（脚本报"电量只有 0%"而手机明明是 100%）。
+    """
+    good = [s for s, st in device_states(adb_exe) if st == "device"]
+    if not good:
+        return ""
+    tcp = [s for s in good if ":" in s and "_adb-tls-connect" not in s]
+    plain = [s for s in good if "_adb-tls-connect" not in s]
+    pick = (tcp or plain or good)[0]
+    if len(good) > 1:
+        print(f"[!] 同时在线 {len(good)} 台（无线调试会多注册一条 mDNS 别名），已指定：{pick}")
+    return pick
+
+
+def diagnose_no_device(adb_exe: str) -> None:
+    """没有可用 USB 设备时，按 state 给出针对性排查（而不是笼统一句"插线"）。"""
+    states = device_states(adb_exe)
+    unauth = [s for s, st in states if st == "unauthorized"]
+    offline = [s for s, st in states if st == "offline"]
+
+    if unauth:
+        print("[×] 手机连上了，但**没有授权**（state=unauthorized）。")
+        print("    → 看手机屏幕，应该有个『允许 USB 调试吗？』的弹窗，勾『一律允许』再点『允许』。")
+        print("    → 没弹窗就去：设置 → 系统和更新 → 开发人员选项 → 『撤销 USB 调试授权』，")
+        print("      然后拔线重插，弹窗会重新出现。")
+        return
+    if offline:
+        print("[×] 手机处于 offline 状态（连接不稳或 adb server 状态错乱）。")
+        print("    → 终端里跑：adb kill-server   然后    adb devices")
+        print("    → 还不行就换一根线、换主板后置 USB 口。")
+        return
+
+    print("[×] adb 完全看不到设备（列表是空的）。按顺序排查，每做一步就重跑本命令：")
+    print("    1) 设置 → 系统和更新 → 开发人员选项 → 把『USB 调试』**关掉再打开**")
+    print("    2) 同页面 → 『撤销 USB 调试授权』→ 拔线重插 → 手机上点『允许』")
+    print("    3) 同页面若有『HDB 调试』→ **关掉它**（荣耀特有，它会抢走调试通道）")
+    print("    4) 换一根**能传数据**的线（很多线只能充电），换主板后置 USB 口（别用前面板/扩展坞）")
+    print("    5) 终端里跑：adb kill-server ; adb devices")
+    print("    6) 手机下拉通知栏，把 USB 用途从『仅充电』改成『传输文件』")
 
 
 def setup_wifi(adb_exe: str) -> str:
@@ -171,7 +241,7 @@ def setup_wifi(adb_exe: str) -> str:
     devs = list_devices(adb_exe)
     usb = [d for d in devs if ":" not in d]
     if not usb:
-        print("[×] 没看到 USB 连接的手机。先插数据线，并在手机上点『允许 USB 调试』。")
+        diagnose_no_device(adb_exe)
         return ""
     print(f"[i] USB 设备：{usb[0]}")
 
@@ -255,6 +325,8 @@ def main() -> int:
     ap.add_argument("--room", default="22", help="室温 °C（自己看温度计/空调显示，写实际值）")
     ap.add_argument("--cooldown", type=float, default=COOLDOWN_MIN, help="段间回温分钟，默认 10")
     ap.add_argument("--note", default="", help="备注，会写进每一行")
+    ap.add_argument("--serial", default="", help="目标设备（无线调试时会看到两台，用 --serial 指定，"
+                                                 "如 172.20.10.6:40203；留空则自动挑 TCP 那条）")
     args = ap.parse_args()
 
     adb_exe = find_adb()
@@ -262,6 +334,11 @@ def main() -> int:
         print("[×] 找不到 adb。本机应在 D:\\platform-tools\\platform-tools\\adb.exe")
         return 2
     print(f"[i] adb = {adb_exe}")
+
+    global TARGET
+    TARGET = args.serial.strip() or pick_target(adb_exe)
+    if TARGET:
+        print(f"[i] 目标设备：{TARGET}")
 
     if args.setup:
         return 0 if setup_wifi(adb_exe) else 1
@@ -312,6 +389,8 @@ def main() -> int:
                "--min", str(args.min), "--room", args.room]
         if args.note:
             cmd += ["--note", args.note]
+        if TARGET:
+            cmd += ["--serial", TARGET]
         rc = subprocess.run(cmd, cwd=HERE).returncode
         if rc != 0:
             print(f"[×] 这一段失败了（rc={rc}）。修好问题后可以单独补：")

@@ -67,9 +67,18 @@ def find_adb() -> str | None:
     return None
 
 
+SERIAL: str = ""          # 目标设备序列号；多设备时必须指定，否则 adb shell 会报错
+
+
 def run_adb(adb: str, *args: str, timeout: int = 15) -> str:
+    cmd = [adb]
+    # 只有"对某台设备执行"的命令才加 -s；devices/connect/pair/tcpip 是 server 级命令，
+    # 加了 -s 会直接报错。
+    if SERIAL and args and args[0] == "shell":
+        cmd += ["-s", SERIAL]
+    cmd += list(args)
     try:
-        r = subprocess.run([adb, *args], capture_output=True, timeout=timeout)
+        r = subprocess.run(cmd, capture_output=True, timeout=timeout)
         return (r.stdout or b"").decode("utf-8", "replace")
     except subprocess.TimeoutExpired:
         return ""
@@ -132,7 +141,11 @@ def main() -> int:
     ap.add_argument("--room", default="", help="室温 °C（手填，没有传感器就写大概值）")
     ap.add_argument("--note", default="", help="备注，例如 '飞行模式关/通知关'")
     ap.add_argument("--app", default="", help="前台应用（可留空自动取）")
+    ap.add_argument("--serial", default="", help="目标设备序列号（多设备时必须给，例如 172.20.10.6:40203）")
     args = ap.parse_args()
+
+    global SERIAL
+    SERIAL = args.serial or os.environ.get("ANDROID_SERIAL", "").strip()
 
     adb = find_adb()
     if not adb:
@@ -150,6 +163,21 @@ def main() -> int:
     if not any("\tdevice" in l for l in lines):
         print("[×] 没有处于 device 状态的设备。检查：数据线是否支持传输、手机是否点了『允许 USB 调试』。")
         return 2
+
+    # 多设备时自动挑一台：优先 TCP/IP（含冒号），并且避开 mDNS 别名
+    # （Android 11+ 的无线调试会额外注册一条 adb-XXXX-YYYY._adb-tls-connect._tcp，
+    #   于是 devices 里出现"两台"，不带 -s 的 adb shell 会报 more than one device，
+    #   读到的电量就是空的 —— 表现为"电量 0%"）
+    if not SERIAL:
+        cand = [l.split()[0] for l in lines if l.endswith("device")]
+        tcp = [s for s in cand if ":" in s and "_adb-tls-connect" not in s]
+        plain = [s for s in cand if "_adb-tls-connect" not in s]
+        SERIAL = (tcp or plain or cand or [""])[0]
+    if SERIAL:
+        print(f"[i] 目标设备：{SERIAL}")
+    if len([l for l in lines if l.endswith("device")]) > 1:
+        print(f"[!] 同时在线 {len([l for l in lines if l.endswith('device')])} 台（无线调试会多注册一条 mDNS 别名），"
+              f"已自动指定 {SERIAL}")
 
     bat = parse_battery(run_adb(adb, "shell", "dumpsys", "battery"))
     print(f"[i] 当前电量 {bat.get('level')}%  温度 {bat.get('temp')}°C  电压 {bat.get('volt')} mV  "
